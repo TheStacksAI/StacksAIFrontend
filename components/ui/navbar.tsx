@@ -11,7 +11,7 @@ export function Navbar({
   return (
     <nav
       className={cn(
-        "flex h-16 w-full items-center justify-between bg-background/50 backdrop-blur-md border-b border-border/50",
+        "flex h-16 w-full items-center justify-between bg-white/80 backdrop-blur-md border-b border-app-border",
         className
       )}
       {...props}

@@ -21,10 +21,10 @@ export default function Navigation() {
           key={item.name}
           href={item.href}
           className={cn(
-            "text-sm font-medium transition-colors hover:text-primary",
+            "text-sm font-medium transition-colors hover:text-accent-indigo",
             pathname === item.href
-              ? "text-foreground"
-              : "text-muted-foreground"
+              ? "text-text-main font-semibold"
+              : "text-text-dim"
           )}
         >
           {item.name}
