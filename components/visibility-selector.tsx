@@ -94,12 +94,12 @@ export function VisibilitySelector({
             <div className="flex flex-col gap-1 items-start">
               {visibility.label}
               {visibility.description && (
-                <div className="text-xs text-muted-foreground">
+                <div className="text-xs text-text-dim">
                   {visibility.description}
                 </div>
               )}
             </div>
-            <div className="text-foreground dark:text-foreground opacity-0 group-data-[active=true]/item:opacity-100">
+            <div className="text-text-main dark:text-text-main opacity-0 group-data-[active=true]/item:opacity-100">
               <CheckCircleFillIcon />
             </div>
           </DropdownMenuItem>

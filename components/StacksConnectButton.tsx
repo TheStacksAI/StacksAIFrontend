@@ -80,13 +80,14 @@ export function StacksConnectButton({
   if (connected && address) {
     return (
       <div className="flex items-center gap-2">
-        <span className="text-sm text-muted-foreground font-mono">
+        <span className="text-sm text-text-dim font-mono bg-app-hover px-3 py-1.5 rounded-xl border border-app-border">
           {address.slice(0, 6)}...{address.slice(-4)}
         </span>
         <Button
           variant="outline"
           size={size}
           onClick={handleDisconnect}
+          className="border-app-border text-text-dim hover:text-accent-indigo hover:border-accent-indigo/40 rounded-xl transition-all duration-200"
         >
           Disconnect
         </Button>
@@ -100,6 +101,7 @@ export function StacksConnectButton({
       size={size}
       onClick={handleConnect}
       disabled={isConnecting}
+      className="bg-accent-indigo hover:bg-accent-indigo-hover text-white rounded-xl font-semibold shadow-premium transition-all duration-200 active:scale-95"
     >
       <Wallet className="mr-2 h-4 w-4" />
       {isConnecting ? 'Connecting...' : 'Connect Wallet'}

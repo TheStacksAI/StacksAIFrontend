@@ -2,11 +2,11 @@ import React from "react";
 
 export default function Disclaimer() {
   return (
-    <div className="text-xs text-muted-foreground text-center w-full">
+    <div className="text-xs text-text-pale text-center w-full py-1">
       <p>
-        StacksAI (beta): Talk to Bitcoin. Not financial advice — <span className="text-theme-orange">DYOR</span>.
+        StacksAI (beta) — Not financial advice.{" "}
+        <span className="text-accent-indigo font-medium">DYOR</span>.
       </p>
-      {/* <p>It is NOT a financial advisor.</p> */}
     </div>
   );
 }

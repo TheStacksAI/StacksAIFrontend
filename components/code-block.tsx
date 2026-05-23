@@ -19,7 +19,7 @@ export function CodeBlock({
       <div className="not-prose flex flex-col max-w-full min-w-0 overflow-hidden">
         <pre
           {...props}
-          className={`text-sm w-full max-w-full overflow-x-auto dark:bg-zinc-900 p-3 sm:p-4 border border-zinc-200 dark:border-zinc-700 rounded-xl dark:text-zinc-50 text-zinc-900`}
+          className={`text-sm w-full max-w-full overflow-x-auto bg-app-hover p-3 sm:p-4 border border-app-border rounded-xl text-text-main`}
         >
           <code className="whitespace-pre-wrap break-words text-xs sm:text-sm">{children}</code>
         </pre>
@@ -28,7 +28,7 @@ export function CodeBlock({
   } else {
     return (
       <code
-        className={`${className} text-xs sm:text-sm bg-zinc-100 dark:bg-zinc-800 py-0.5 px-1 rounded-md break-words`}
+        className={`${className} text-xs sm:text-sm bg-app-hover py-0.5 px-1 rounded-md break-words`}
         {...props}
       >
         {children}

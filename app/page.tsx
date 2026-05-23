@@ -43,10 +43,10 @@ const stats = [
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-app-bg">
       {/* Navigation */}
       <header className="sticky top-0 z-50 -mb-4 px-4 pb-4">
-        <div className="fade-bottom bg-background/15 absolute left-0 h-24 w-full backdrop-blur-lg"></div>
+        <div className="fade-bottom bg-app-bg/15 absolute left-0 h-24 w-full backdrop-blur-lg"></div>
         <div className="max-w-7xl relative mx-auto">
           <Navbar>
             <NavbarLeft>
@@ -58,26 +58,26 @@ export default function LandingPage() {
                   height={24}
                   className="rounded-lg sm:w-8 sm:h-8"
                 />
-                Stacks<span className="text-primary">AI</span>
+                Stacks<span className="text-accent-indigo">AI</span>
               </Link>
               <Navigation />
             </NavbarLeft>
             <NavbarRight>
               <Link
                 href="/docs"
-                className="hidden text-sm md:block hover:text-primary transition-colors"
+                className="hidden text-sm md:block hover:text-accent-indigo transition-colors"
               >
                 Documentation
               </Link>
               {/* Desktop button */}
-              <Button asChild variant="outline" size="sm" className="hidden sm:flex border-primary/40 hover:bg-primary/10">
+              <Button asChild variant="outline" size="sm" className="hidden sm:flex border-accent-indigo/40 hover:bg-accent-indigo/10">
                 <Link href="/chat">
                   Launch Terminal
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               {/* Mobile button - compact */}
-              <Button asChild variant="outline" size="sm" className="sm:hidden px-2.5 text-xs h-8 border-primary/40">
+              <Button asChild variant="outline" size="sm" className="sm:hidden px-2.5 text-xs h-8 border-accent-indigo/40">
                 <Link href="/chat">
                   Launch
                   <ArrowRight className="ml-1 h-3 w-3" />
@@ -100,15 +100,15 @@ export default function LandingPage() {
                         height={32}
                         className="rounded-lg"
                       />
-                      <span>Stacks<span className="text-primary">AI</span></span>
+                      <span>Stacks<span className="text-accent-indigo">AI</span></span>
                     </Link>
-                    <Link href="/about" className="text-muted-foreground hover:text-foreground">
+                    <Link href="/about" className="text-text-dim hover:text-text-main">
                       About
                     </Link>
-                    <Link href="/docs" className="text-muted-foreground hover:text-foreground">
+                    <Link href="/docs" className="text-text-dim hover:text-text-main">
                       Documentation
                     </Link>
-                    <Link href="/roadmap" className="text-muted-foreground hover:text-foreground">
+                    <Link href="/roadmap" className="text-text-dim hover:text-text-main">
                       Roadmap
                     </Link>
                   </nav>
@@ -130,9 +130,9 @@ export default function LandingPage() {
               transition={{ duration: 0.8 }}
               className="space-y-8"
             >
-              <Badge variant="outline" className="border-primary/40 bg-primary/5 animate-pulse-slow">
-                <Sparkles className="mr-2 h-3 w-3 text-primary" />
-                <span className="text-primary font-medium">
+              <Badge variant="outline" className="border-accent-indigo/40 bg-accent-indigo/5 animate-pulse-slow">
+                <Sparkles className="mr-2 h-3 w-3 text-accent-indigo" />
+                <span className="text-accent-indigo font-medium">
                   First Comprehensive MCP for Bitcoin DeFi
                 </span>
               </Badge>
@@ -141,20 +141,20 @@ export default function LandingPage() {
                 <h1 className="text-5xl md:text-7xl font-bold leading-tight">
                   Talk to
                   <br />
-                  <span className="bg-gradient-accent bg-clip-text text-transparent">
+                  <span className="font-serif italic text-accent-indigo">
                     Bitcoin.
                   </span>
                 </h1>
 
-                <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
+                <p className="text-xl md:text-2xl text-text-dim leading-relaxed">
                   Trade, lend, stack - through conversation.
                 </p>
               </div>
 
               {/* Terminal Example */}
-              <div className="bg-surface-elevated border border-primary/20 rounded-lg p-6 space-y-4 shadow-glow-purple">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Terminal className="h-4 w-4 text-primary" />
+              <div className="bg-white border border-app-border rounded-lg p-6 space-y-4 shadow-floating">
+                <div className="flex items-center gap-2 text-sm text-text-dim">
+                  <Terminal className="h-4 w-4 text-accent-indigo" />
                   <span className="font-mono">stacks-ai-terminal</span>
                 </div>
 
@@ -168,8 +168,8 @@ export default function LandingPage() {
                       className="space-y-2"
                     >
                       <div className="flex items-start gap-2">
-                        <span className="text-primary font-mono text-sm">$</span>
-                        <span className="text-foreground font-mono text-sm">{conv.user}</span>
+                        <span className="text-accent-indigo font-mono text-sm">$</span>
+                        <span className="text-text-main font-mono text-sm">{conv.user}</span>
                       </div>
                       <div className="flex items-start gap-2 ml-4">
                         <MessageSquare className="h-4 w-4 text-cyan-400 mt-0.5 shrink-0" />
@@ -185,7 +185,7 @@ export default function LandingPage() {
                 <Button
                   size="lg"
                   asChild
-                  className="text-lg px-8 py-6 bg-gradient-purple hover:shadow-glow-purple transition-all transform hover:scale-105 text-white font-bold"
+                  className="text-lg px-8 py-6 bg-accent-indigo hover:shadow-floating transition-all transform hover:scale-105 text-white font-bold"
                 >
                   <Link href="/chat">
                     Launch Terminal
@@ -197,7 +197,7 @@ export default function LandingPage() {
                   variant="outline"
                   size="lg"
                   asChild
-                  className="text-lg px-8 py-6 border-primary/40 hover:bg-primary/10"
+                  className="text-lg px-8 py-6 border-accent-indigo/40 hover:bg-accent-indigo/10"
                 >
                   <Link href="/docs">
                     <Github className="mr-2 h-5 w-5" />
@@ -207,7 +207,7 @@ export default function LandingPage() {
               </div>
 
               {/* Quick Stats */}
-              <div className="flex items-center gap-6 text-sm text-muted-foreground">
+              <div className="flex items-center gap-6 text-sm text-text-dim">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
                   <span>144+ tools live</span>
@@ -247,16 +247,16 @@ export default function LandingPage() {
                     top: `${Math.floor(idx / 3) * 25}%`,
                   }}
                 >
-                  <div className={`bg-gradient-to-br ${protocol.color} p-0.5 rounded-xl shadow-card hover:shadow-card-hover transition-all duration-300 cursor-pointer group`}>
-                    <div className="bg-surface-elevated/90 backdrop-blur-sm rounded-xl p-6 w-48 h-32 flex flex-col justify-between">
+                  <div className={`bg-gradient-to-br ${protocol.color} p-0.5 rounded-xl shadow-premium hover:shadow-floating transition-all duration-300 cursor-pointer group`}>
+                    <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6 w-48 h-32 flex flex-col justify-between">
                       <div className="flex items-center gap-2">
-                        <Box className="h-5 w-5 text-primary" />
-                        <h3 className="font-bold text-foreground">{protocol.name}</h3>
+                        <Box className="h-5 w-5 text-accent-indigo" />
+                        <h3 className="font-bold text-text-main">{protocol.name}</h3>
                       </div>
-                      <p className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">
+                      <p className="text-xs text-text-dim group-hover:text-text-main transition-colors">
                         {protocol.description}
                       </p>
-                      <div className="flex items-center gap-1 text-xs text-primary">
+                      <div className="flex items-center gap-1 text-xs text-accent-indigo">
                         <div className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></div>
                         <span>Live</span>
                       </div>
@@ -300,7 +300,7 @@ export default function LandingPage() {
       </BeamsBackground>
 
       {/* Stats Section */}
-      <section className="py-20 bg-surface border-y border-primary/10">
+      <section className="py-20 bg-app-surface border-y border-app-border">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {stats.map((stat, idx) => (
@@ -313,8 +313,8 @@ export default function LandingPage() {
                 className="text-center space-y-3"
               >
                 <div className="flex justify-center">
-                  <div className="p-3 bg-primary/10 rounded-xl">
-                    <stat.icon className="h-8 w-8 text-primary" />
+                  <div className="p-3 bg-accent-indigo/10 rounded-xl">
+                    <stat.icon className="h-8 w-8 text-accent-indigo" />
                   </div>
                 </div>
                 <div>
@@ -323,11 +323,11 @@ export default function LandingPage() {
                     whileInView={{ scale: 1 }}
                     transition={{ duration: 0.5, delay: idx * 0.1 + 0.2 }}
                     viewport={{ once: true }}
-                    className="text-4xl md:text-5xl font-bold bg-gradient-accent bg-clip-text text-transparent"
+                    className="text-4xl md:text-5xl font-bold font-serif italic text-accent-indigo"
                   >
                     {stat.value}
                   </motion.div>
-                  <p className="text-muted-foreground mt-2">{stat.label}</p>
+                  <p className="text-text-dim mt-2">{stat.label}</p>
                 </div>
               </motion.div>
             ))}
@@ -336,7 +336,7 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works */}
-      <section className="py-32 bg-background">
+      <section className="py-32 bg-app-bg">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -346,9 +346,9 @@ export default function LandingPage() {
             className="text-center mb-16 max-w-3xl mx-auto"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              The Voice of <span className="bg-gradient-accent bg-clip-text text-transparent">Bitcoin DeFi</span>
+              The Voice of <span className="font-serif italic text-accent-indigo">Bitcoin DeFi</span>
             </h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-xl text-text-dim">
               Stop navigating complex DeFi interfaces. Just talk. StacksAI translates your words into blockchain actions across the entire Bitcoin L2 ecosystem.
             </p>
           </motion.div>
@@ -362,13 +362,13 @@ export default function LandingPage() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="absolute -top-6 -left-6 w-12 h-12 bg-gradient-purple rounded-full flex items-center justify-center text-white font-bold text-xl shadow-glow-purple">
+              <div className="absolute -top-6 -left-6 w-12 h-12 bg-accent-indigo rounded-full flex items-center justify-center text-white font-bold text-xl shadow-floating">
                 1
               </div>
-              <div className="p-8 border border-primary/20 rounded-xl bg-card/50 backdrop-blur-sm hover:bg-card/70 hover:border-primary/40 transition-all duration-300 h-full">
-                <Terminal className="h-12 w-12 text-primary mb-4" />
+              <div className="p-8 border border-app-border rounded-xl glass backdrop-blur-sm hover:bg-white/90 hover:border-accent-indigo/40 transition-all duration-300 h-full">
+                <Terminal className="h-12 w-12 text-accent-indigo mb-4" />
                 <h3 className="text-xl font-semibold mb-3">Speak Naturally</h3>
-                <p className="text-muted-foreground">
+                <p className="text-text-dim">
                   &quot;Swap 100 STX for sBTC&quot; or &quot;What&apos;s the best yield for my tokens?&quot; - just type what you want in plain English.
                 </p>
               </div>
@@ -382,13 +382,13 @@ export default function LandingPage() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="absolute -top-6 -left-6 w-12 h-12 bg-gradient-accent rounded-full flex items-center justify-center text-white font-bold text-xl shadow-glow-cyan">
+              <div className="absolute -top-6 -left-6 w-12 h-12 bg-gradient-accent rounded-full flex items-center justify-center text-white font-bold text-xl shadow-floating">
                 2
               </div>
-              <div className="p-8 border border-primary/20 rounded-xl bg-card/50 backdrop-blur-sm hover:bg-card/70 hover:border-primary/40 transition-all duration-300 h-full">
-                <Brain className="h-12 w-12 text-primary mb-4" />
+              <div className="p-8 border border-app-border rounded-xl glass backdrop-blur-sm hover:bg-white/90 hover:border-accent-indigo/40 transition-all duration-300 h-full">
+                <Brain className="h-12 w-12 text-accent-indigo mb-4" />
                 <h3 className="text-xl font-semibold mb-3">AI Understands</h3>
-                <p className="text-muted-foreground">
+                <p className="text-text-dim">
                   Our AI analyzes your request, finds the best protocol (ALEX, Velar, Arkadiko, etc.), and prepares the optimal transaction.
                 </p>
               </div>
@@ -402,13 +402,13 @@ export default function LandingPage() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="absolute -top-6 -left-6 w-12 h-12 bg-gradient-bitcoin rounded-full flex items-center justify-center text-white font-bold text-xl shadow-glow-bitcoin">
+              <div className="absolute -top-6 -left-6 w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center text-white font-bold text-xl shadow-floating">
                 3
               </div>
-              <div className="p-8 border border-primary/20 rounded-xl bg-card/50 backdrop-blur-sm hover:bg-card/70 hover:border-primary/40 transition-all duration-300 h-full">
-                <Shield className="h-12 w-12 text-primary mb-4" />
+              <div className="p-8 border border-app-border rounded-xl glass backdrop-blur-sm hover:bg-white/90 hover:border-accent-indigo/40 transition-all duration-300 h-full">
+                <Shield className="h-12 w-12 text-accent-indigo mb-4" />
                 <h3 className="text-xl font-semibold mb-3">You Approve</h3>
-                <p className="text-muted-foreground">
+                <p className="text-text-dim">
                   Review the transaction, sign with your wallet (Leather/Xverse), and it settles on Bitcoin. Your keys, your control.
                 </p>
               </div>
@@ -433,7 +433,7 @@ export default function LandingPage() {
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Every Protocol. One Interface.
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-text-dim max-w-3xl mx-auto">
               From swaps to loans, stacking to NFTs - access the complete Bitcoin DeFi ecosystem through a single conversation.
             </p>
           </motion.div>
@@ -449,11 +449,11 @@ export default function LandingPage() {
                 className="group"
               >
                 <div className={`bg-gradient-to-br ${protocol.color} p-0.5 rounded-xl transition-all duration-300 hover:scale-105`}>
-                  <div className="bg-surface-elevated rounded-xl p-6 h-32 flex flex-col justify-between">
-                    <h3 className="font-bold text-foreground group-hover:text-primary transition-colors">
+                  <div className="bg-white rounded-xl p-6 h-32 flex flex-col justify-between">
+                    <h3 className="font-bold text-text-main group-hover:text-accent-indigo transition-colors">
                       {protocol.name}
                     </h3>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-xs text-text-dim">
                       {protocol.description}
                     </p>
                   </div>
@@ -470,10 +470,10 @@ export default function LandingPage() {
             viewport={{ once: true }}
             className="text-center mt-12"
           >
-            <p className="text-muted-foreground mb-4">
+            <p className="text-text-dim mb-4">
               MCP-powered architecture. More protocols integrating every week.
             </p>
-            <Button variant="outline" asChild className="border-primary/40 hover:bg-primary/10">
+            <Button variant="outline" asChild className="border-accent-indigo/40 hover:bg-accent-indigo/10">
               <Link href="/docs">
                 Integrate Your Protocol
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -484,7 +484,7 @@ export default function LandingPage() {
       </section>
 
       {/* Real Use Cases */}
-      <section className="py-32 bg-background">
+      <section className="py-32 bg-app-bg">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -537,11 +537,11 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 viewport={{ once: true }}
-                className="p-6 border border-primary/20 rounded-xl bg-card/50 backdrop-blur-sm hover:bg-card/70 hover:border-primary/40 transition-all duration-300 group"
+                className="p-6 border border-app-border rounded-xl glass backdrop-blur-sm hover:bg-white/90 hover:border-accent-indigo/40 transition-all duration-300 group"
               >
-                <useCase.icon className="h-10 w-10 text-primary mb-4 group-hover:scale-110 transition-transform" />
+                <useCase.icon className="h-10 w-10 text-accent-indigo mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="text-lg font-semibold mb-2">{useCase.title}</h3>
-                <p className="text-sm text-muted-foreground">{useCase.desc}</p>
+                <p className="text-sm text-text-dim">{useCase.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -559,7 +559,7 @@ export default function LandingPage() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Why Stacks<span className="text-primary">AI</span>?
+              Why Stacks<span className="text-accent-indigo">AI</span>?
             </h2>
           </motion.div>
 
@@ -569,11 +569,11 @@ export default function LandingPage() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="p-8 border border-primary/20 rounded-xl bg-card/50 backdrop-blur-sm"
+              className="p-8 border border-app-border rounded-xl glass backdrop-blur-sm"
             >
               <Shield className="h-12 w-12 text-bitcoin mb-4" />
               <h3 className="text-2xl font-bold mb-4">Bitcoin Security</h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-text-dim leading-relaxed">
                 Every transaction settles on Bitcoin. Not a sidechain, not an optimistic rollup - real Bitcoin finality through Stacks&apos; Proof-of-Transfer consensus.
               </p>
             </motion.div>
@@ -583,11 +583,11 @@ export default function LandingPage() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="p-8 border border-primary/20 rounded-xl bg-card/50 backdrop-blur-sm"
+              className="p-8 border border-app-border rounded-xl glass backdrop-blur-sm"
             >
-              <Lock className="h-12 w-12 text-primary mb-4" />
+              <Lock className="h-12 w-12 text-accent-indigo mb-4" />
               <h3 className="text-2xl font-bold mb-4">Non-Custodial</h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-text-dim leading-relaxed">
                 We never hold your keys or tokens. Connect your Leather or Xverse wallet, approve transactions, and maintain complete control of your assets.
               </p>
             </motion.div>
@@ -597,11 +597,11 @@ export default function LandingPage() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
               viewport={{ once: true }}
-              className="p-8 border border-primary/20 rounded-xl bg-card/50 backdrop-blur-sm"
+              className="p-8 border border-app-border rounded-xl glass backdrop-blur-sm"
             >
               <Brain className="h-12 w-12 text-cyan-400 mb-4" />
               <h3 className="text-2xl font-bold mb-4">Actually Intelligent</h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-text-dim leading-relaxed">
                 Not just keyword matching. Our AI understands context, compares protocols, calculates optimal routes, and explains complex DeFi operations in plain English.
               </p>
             </motion.div>
@@ -611,11 +611,11 @@ export default function LandingPage() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
               viewport={{ once: true }}
-              className="p-8 border border-primary/20 rounded-xl bg-card/50 backdrop-blur-sm"
+              className="p-8 border border-app-border rounded-xl glass backdrop-blur-sm"
             >
               <Zap className="h-12 w-12 text-bitcoin mb-4" />
               <h3 className="text-2xl font-bold mb-4">Open Protocol</h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-text-dim leading-relaxed">
                 Built on Model Context Protocol (MCP). Any Stacks protocol can integrate their tools. Like ChatGPT plugins, but for Bitcoin DeFi - composable and permissionless.
               </p>
             </motion.div>
@@ -636,11 +636,11 @@ export default function LandingPage() {
             <h2 className="text-4xl md:text-6xl font-bold mb-6">
               Stop clicking.
               <br />
-              <span className="bg-gradient-accent bg-clip-text text-transparent">
+              <span className="font-serif italic text-accent-indigo">
                 Start talking.
               </span>
             </h2>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto">
+            <p className="text-xl md:text-2xl text-text-dim mb-12 max-w-2xl mx-auto">
               The entire Bitcoin DeFi ecosystem is waiting. Just ask.
             </p>
 
@@ -648,7 +648,7 @@ export default function LandingPage() {
               <Button
                 size="lg"
                 asChild
-                className="text-xl px-12 py-8 bg-gradient-purple hover:shadow-glow-purple transition-all transform hover:scale-105 text-white font-bold"
+                className="text-xl px-12 py-8 bg-accent-indigo hover:shadow-floating transition-all transform hover:scale-105 text-white font-bold"
               >
                 <Link href="/chat">
                   Launch Terminal Now
@@ -660,7 +660,7 @@ export default function LandingPage() {
                 variant="outline"
                 size="lg"
                 asChild
-                className="text-xl px-10 py-8 border-primary/40 hover:bg-primary/10"
+                className="text-xl px-10 py-8 border-accent-indigo/40 hover:bg-accent-indigo/10"
               >
                 <Link href="/docs">
                   Read the Docs
@@ -668,17 +668,17 @@ export default function LandingPage() {
               </Button>
             </div>
 
-            <div className="mt-12 flex items-center justify-center gap-8 text-sm text-muted-foreground">
+            <div className="mt-12 flex items-center justify-center gap-8 text-sm text-text-dim">
               <div className="flex items-center gap-2">
-                <Shield className="h-4 w-4 text-primary" />
+                <Shield className="h-4 w-4 text-accent-indigo" />
                 <span>Bitcoin secured</span>
               </div>
               <div className="flex items-center gap-2">
-                <Lock className="h-4 w-4 text-primary" />
+                <Lock className="h-4 w-4 text-accent-indigo" />
                 <span>Non-custodial</span>
               </div>
               <div className="flex items-center gap-2">
-                <Zap className="h-4 w-4 text-primary" />
+                <Zap className="h-4 w-4 text-accent-indigo" />
                 <span>Open source</span>
               </div>
             </div>
@@ -687,7 +687,7 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-background border-t border-primary/10 py-16">
+      <footer className="bg-app-bg border-t border-app-border py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-2">
@@ -699,44 +699,44 @@ export default function LandingPage() {
                   height={32}
                   className="rounded-lg"
                 />
-                <span className="text-xl font-bold">Stacks<span className="text-primary">AI</span></span>
+                <span className="text-xl font-bold">Stacks<span className="text-accent-indigo">AI</span></span>
               </div>
-              <p className="text-muted-foreground max-w-md mb-6">
+              <p className="text-text-dim max-w-md mb-6">
                 Talk to Bitcoin. Access the entire Bitcoin DeFi ecosystem through conversation.
               </p>
               <div className="flex items-center gap-2 text-sm">
-                <Badge variant="outline" className="border-primary/40 bg-primary/5">
-                  <span className="text-primary">Built for Stacks Vibe Hackathon</span>
+                <Badge variant="outline" className="border-accent-indigo/40 bg-accent-indigo/5">
+                  <span className="text-accent-indigo">Built for Stacks Vibe Hackathon</span>
                 </Badge>
               </div>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">Product</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/chat" className="hover:text-foreground transition-colors">Terminal</Link></li>
-                <li><Link href="/docs" className="hover:text-foreground transition-colors">Documentation</Link></li>
-                <li><Link href="/roadmap" className="hover:text-foreground transition-colors">Roadmap</Link></li>
-                <li><Link href="/about" className="hover:text-foreground transition-colors">About</Link></li>
+              <ul className="space-y-2 text-sm text-text-dim">
+                <li><Link href="/chat" className="hover:text-text-main transition-colors">Terminal</Link></li>
+                <li><Link href="/docs" className="hover:text-text-main transition-colors">Documentation</Link></li>
+                <li><Link href="/roadmap" className="hover:text-text-main transition-colors">Roadmap</Link></li>
+                <li><Link href="/about" className="hover:text-text-main transition-colors">About</Link></li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">Community</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
+              <ul className="space-y-2 text-sm text-text-dim">
                 <li>
-                  <a href="https://github.com/BlockchainOracle" className="hover:text-foreground transition-colors flex items-center">
+                  <a href="https://github.com/BlockchainOracle" className="hover:text-text-main transition-colors flex items-center">
                     GitHub
                     <ExternalLink className="ml-1 h-3 w-3" />
                   </a>
                 </li>
-                <li><Link href="/chat" className="hover:text-foreground transition-colors">Discord</Link></li>
-                <li><Link href="/chat" className="hover:text-foreground transition-colors">Twitter</Link></li>
+                <li><Link href="/chat" className="hover:text-text-main transition-colors">Discord</Link></li>
+                <li><Link href="/chat" className="hover:text-text-main transition-colors">Twitter</Link></li>
               </ul>
             </div>
           </div>
 
-          <div className="border-t border-primary/10 mt-12 pt-8 text-center text-sm text-muted-foreground">
+          <div className="border-t border-app-border mt-12 pt-8 text-center text-sm text-text-dim">
             <p>&copy; 2025 StacksAI. All rights reserved. Built with Bitcoin security.</p>
           </div>
         </div>

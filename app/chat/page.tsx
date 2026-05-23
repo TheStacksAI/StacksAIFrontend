@@ -27,14 +27,14 @@ export default function Page() {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen gap-4">
+      <div className="flex flex-col items-center justify-center min-h-screen gap-4 bg-app-bg grid-subtle">
         <div className="relative">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-          <div className="absolute inset-0 rounded-full h-12 w-12 border-t-2 border-primary/30 animate-pulse"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent-indigo"></div>
+          <div className="absolute inset-0 rounded-full h-12 w-12 border-t-2 border-accent-indigo/30 animate-pulse"></div>
         </div>
         <div className="text-center">
-          <p className="text-lg font-medium text-primary">StacksAI</p>
-          <p className="text-sm text-muted-foreground">Initializing AI systems...</p>
+          <p className="font-serif font-bold text-lg text-text-main">Stacks<span className="italic text-accent-indigo">AI</span></p>
+          <p className="text-sm text-text-dim">Initializing AI systems...</p>
         </div>
       </div>
     );
@@ -42,35 +42,27 @@ export default function Page() {
 
   if (!isConnected) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen gap-6 p-4 terminal-bg">
+      <div className="flex flex-col items-center justify-center min-h-screen gap-6 p-4 bg-app-bg grid-subtle">
         <div className="text-center max-w-md">
-          <h1 className="text-4xl font-bold text-theme-orange mb-4 vechain-glow">
-            Talk to Bitcoin
+          <h1 className="font-serif font-bold text-5xl tracking-tight text-text-main mb-4">
+            Talk to <span className="italic text-accent-indigo">Bitcoin</span>
           </h1>
-          <p className="text-muted-foreground mb-6 text-lg">
-            Access the entire Bitcoin DeFi ecosystem through conversation. Trade, lend, stack - just by talking. Connect your wallet to get started.
+          <p className="text-text-dim mb-8 text-lg leading-relaxed">
+            Access the entire Bitcoin DeFi ecosystem through conversation. Trade, lend, stack — just by talking.
           </p>
           <StacksConnectButton />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-6xl">
-          <div className="p-6 border rounded-xl bg-card/50 backdrop-blur-sm hover:bg-card/70 transition-all duration-300">
-            <h3 className="font-semibold mb-3 text-lg text-theme-orange">Blockchain Analytics</h3>
-            <p className="text-sm text-muted-foreground">
-              Get insights into transactions, blocks, and network statistics with real-time data
-            </p>
-          </div>
-          <div className="p-6 border rounded-xl bg-card/50 backdrop-blur-sm hover:bg-card/70 transition-all duration-300">
-            <h3 className="font-semibold mb-3 text-lg text-theme-orange">Smart Contract Tools</h3>
-            <p className="text-sm text-muted-foreground">
-              Verify contracts, analyze code, and interact with deployed contracts seamlessly
-            </p>
-          </div>
-          <div className="p-6 border rounded-xl bg-card/50 backdrop-blur-sm hover:bg-card/70 transition-all duration-300">
-            <h3 className="font-semibold mb-3 text-lg text-theme-orange">Token & NFT Management</h3>
-            <p className="text-sm text-muted-foreground">
-              Track balances, transfers, and manage your digital assets with ease
-            </p>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 max-w-4xl w-full">
+          {[
+            { title: "Blockchain Analytics", desc: "Real-time insights into transactions, blocks, and network statistics." },
+            { title: "Smart Contract Tools", desc: "Verify contracts, analyze code, and interact with deployed contracts." },
+            { title: "Token & NFT Management", desc: "Track balances, transfers, and manage your digital assets with ease." },
+          ].map((item) => (
+            <div key={item.title} className="glass rounded-2xl p-6 border border-app-border hover:shadow-floating transition-all duration-300">
+              <h3 className="font-serif font-bold text-lg text-text-main mb-2">{item.title}</h3>
+              <p className="text-sm text-text-dim">{item.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
     );

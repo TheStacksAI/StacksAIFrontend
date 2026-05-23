@@ -539,8 +539,8 @@ function PureSuggestedActions({
               }}
               className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-md border text-xs sm:text-sm font-medium whitespace-nowrap transition-all snap-start flex-shrink-0 ${
                 activeCategory === index
-                  ? "bg-[#1A1A1A] border-[#5546FF] shadow-[0_0_15px_rgba(85,70,255,0.2)]"
-                  : "bg-[#0A0A0A] border-[#2E2E2E] hover:border-[#5546FF]/50 hover:bg-[#1A1A1A]/50"
+                  ? "bg-white border-accent-indigo shadow-glow-indigo"
+                  : "bg-app-bg border-app-border hover:border-accent-indigo/50 hover:bg-white/50"
               }`}
               style={
                 activeCategory === index
@@ -554,7 +554,7 @@ function PureSuggestedActions({
               <span style={activeCategory === index ? { color: category.accent } : undefined} className="flex-shrink-0">
                 {category.icon}
               </span>
-              <span className={`${activeCategory === index ? "text-[#E0E0E0]" : "text-[#A0A0A0]"}`}>
+              <span className={`${activeCategory === index ? "text-text-main" : "text-text-pale"}`}>
                 {category.name}
               </span>
               <span className="text-[10px] sm:text-xs opacity-50">({category.actions.length})</span>
@@ -581,39 +581,28 @@ function PureSuggestedActions({
                     e.preventDefault();
                     await handleActionClick(suggestedAction.action);
                   }}
-                  className="relative text-left border border-[#2E2E2E] rounded-lg px-3 sm:px-4 py-3 sm:py-4 w-full h-full bg-[#1A1A1A] hover:bg-[#242424] hover:border-[#5546FF]/50 transition-all group"
-                  style={{
-                    boxShadow: "0 1px 3px rgba(0, 0, 0, 0.3)",
-                  }}
+                  className="relative text-left border border-app-border rounded-xl px-3 sm:px-4 py-3 sm:py-4 w-full h-full bg-white hover:bg-app-hover hover:border-accent-indigo/40 hover:shadow-premium transition-all duration-200 group"
+                  style={{}}
                 >
                   {/* Accent bar on left */}
                   <div
-                    className="absolute left-0 top-3 bottom-3 w-1 rounded-r opacity-0 group-hover:opacity-100 transition-opacity"
-                    style={{ backgroundColor: categories[activeCategory].accent }}
+                    className="absolute left-0 top-3 bottom-3 w-1 rounded-r opacity-0 group-hover:opacity-100 transition-opacity bg-accent-indigo"
                   />
 
                   {/* Content */}
                   <div className="pl-0 group-hover:pl-2 transition-all space-y-1.5 sm:space-y-2">
                     <div className="flex items-start justify-between gap-2">
-                      <span className="font-semibold text-[#E0E0E0] text-sm sm:text-base leading-tight break-words">
+                      <span className="font-semibold text-text-main text-sm sm:text-base leading-tight break-words">
                         {suggestedAction.title}
                       </span>
                       <ChevronRight
-                        className="w-4 h-4 sm:w-5 sm:h-5 text-[#5546FF] opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 mt-0.5"
+                        className="w-4 h-4 sm:w-5 sm:h-5 text-accent-indigo opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 mt-0.5"
                       />
                     </div>
-                    <span className="text-[#A0A0A0] text-[10px] sm:text-xs block break-words">
+                    <span className="text-text-pale text-[10px] sm:text-xs block break-words">
                       {suggestedAction.label}
                     </span>
                   </div>
-
-                  {/* Subtle glow on hover */}
-                  <div
-                    className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
-                    style={{
-                      boxShadow: `0 0 20px ${categories[activeCategory].accent}15`,
-                    }}
-                  />
                 </button>
               </motion.div>
             ))}
@@ -626,9 +615,9 @@ function PureSuggestedActions({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
-        className="flex items-center justify-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs text-[#A0A0A0] pt-2 border-t border-[#2E2E2E]/50"
+        className="flex items-center justify-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs text-text-pale pt-2 border-t border-app-border/50"
       >
-        <Zap className="w-3 h-3 text-[#5546FF] flex-shrink-0" />
+        <Zap className="w-3 h-3 text-accent-indigo flex-shrink-0" />
         <span className="text-center break-words">
           {categories.reduce((sum, cat) => sum + cat.actions.length, 0)}+ AI-powered tools
           across {categories.length} categories

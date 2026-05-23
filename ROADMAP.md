@@ -4,6 +4,39 @@ Building the future of Bitcoin DeFi accessibility through AI.
 
 ---
 
+## Grant Proposal Summary
+
+> **What are we building?** Stacks AI is a natural language interface for Bitcoin DeFi on Stacks. It exposes 144+ operations across ALEX, Velar, BitFlow, Arkadiko, Granite, and PoX through a chat UI and MCP server, letting users trade, lend, and stack without writing code or reading docs. The x402 layer adds pay-per-call monetization for AI agents, creating a sustainable revenue model for MCP tool providers on Stacks.
+>
+> **Who is it for?** STX holders, DeFi users, and AI agent developers who want programmatic access to Bitcoin DeFi without custodial intermediaries.
+>
+> **Why does it matter for Stacks?** It lowers the barrier to entry for the entire Stacks DeFi ecosystem and introduces a new monetization primitive (HTTP 402 pay-per-call) that any protocol or tool provider can adopt.
+
+---
+
+## Grant Milestones
+
+| # | Deliverable | Target Date | Verification |
+|---|-------------|-------------|--------------|
+| 1 | Deploy x402 gateway to production with STX, sBTC, and USDCx payment support | Q3 2026 | Live gateway URL + on-chain payment transaction logs |
+| 2 | Add sBTC lending support via Granite (2 new MCP tools: deposit, borrow) | Q3 2026 | Deployed tools + integration test suite + testnet demo |
+| 3 | Ship desktop app (Mac + Linux) connecting to local Clarinet devnet | Q4 2026 | GitHub release + install guide + devnet walkthrough video |
+| 4 | Reputation system: on-chain NFT badges for top contributors (SIP-009) | Q1 2027 | Deployed contract address + minting demo |
+
+---
+
+## Risk Assessment
+
+| Risk | Likelihood | Impact | Mitigation |
+|------|-----------|--------|------------|
+| ALEX/Velar/Arkadiko API changes break tools | Medium | Medium | Versioned plugin architecture; graceful error handling already in place; fallback to Stacks API directly |
+| OpenAI cost scaling with user growth | Medium | High | x402 pay-per-call model offsets costs; rate limiting in middleware |
+| Arkadiko mainnet-only limitation confuses users | Low | Low | Already documented in README and UI warnings; Granite covers testnet lending |
+| Desktop app Electron/Tauri security surface | Low | Medium | No private key storage on disk; wallet signing stays in Leather/Xverse |
+| Single-developer bottleneck on delivery | Medium | Medium | Milestones scoped conservatively; open-source contributions welcome |
+
+---
+
 ## Phase 1: Foundation (COMPLETED)
 
 **What We Built:**
@@ -17,7 +50,7 @@ Building the future of Bitcoin DeFi accessibility through AI.
 
 ---
 
-## Phase 2: Desktop Application (Q1 2025)
+## Phase 2: Desktop Application (Q4 2026)
 
 **Vision:** Give users full control with a local-first desktop experience.
 
@@ -32,7 +65,7 @@ Building the future of Bitcoin DeFi accessibility through AI.
 
 ---
 
-## Phase 3: Reputation & Rewards (Q1 2026)
+## Phase 3: Reputation & Rewards (Q1 2027)
 
 **Vision:** Recognize and reward active community members.
 
@@ -51,7 +84,7 @@ Building the future of Bitcoin DeFi accessibility through AI.
 
 ---
 
-## Phase 4: Voice Interface (Q2 2026)
+## Phase 4: Voice Interface (Q2 2027)
 
 **Vision:** Talk to Bitcoin DeFi.
 
@@ -68,7 +101,7 @@ Building the future of Bitcoin DeFi accessibility through AI.
 
 ---
 
-## Phase 5: Mobile Experience (Q3 2026)
+## Phase 5: Mobile Experience (Q3 2027)
 
 **Vision:** Bitcoin DeFi in your pocket.
 
@@ -128,10 +161,10 @@ Always free, always powerful. Access to core DeFi operations.
 | Phase | Timeline | Focus |
 |-------|----------|-------|
 | Phase 1: Foundation | Done | Core platform |
-| Phase 2: Desktop App | Q1 2025 | Local-first experience |
-| Phase 3: Reputation | Q1 2026 | Community engagement |
-| Phase 4: Voice Interface | Q2 2026 | Accessibility |
-| Phase 5: Mobile | Q3 2026 | Mobile-first |
+| Phase 2: Desktop App | Q4 2026 | Local-first experience |
+| Phase 3: Reputation | Q1 2027 | Community engagement |
+| Phase 4: Voice Interface | Q2 2027 | Accessibility |
+| Phase 5: Mobile | Q3 2027 | Mobile-first |
 | Phase 6: Premium | TBA | Sustainability |
 
 ---

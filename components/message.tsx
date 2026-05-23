@@ -198,14 +198,14 @@ const PurePreviewMessage = ({
           )}
         >
           {message.role === "assistant" && (
-            <div className="size-8 flex items-center rounded-full justify-center ring-1 shrink-0 ring-border bg-background">
+            <div className="size-8 flex items-center rounded-full justify-center ring-1 shrink-0 ring-border bg-app-bg">
               <div className="translate-y-px">
                 <SparklesIcon size={14} color="#fc8d36" />
               </div>
             </div>
           )}
           {message.role === "system" && (
-            <div className="size-8 flex items-center rounded-full justify-center ring-1 shrink-0 ring-border bg-background">
+            <div className="size-8 flex items-center rounded-full justify-center ring-1 shrink-0 ring-border bg-app-bg">
               <div className="translate-y-px">
                 <InfoIcon size={20} color="white" />
               </div>
@@ -273,7 +273,7 @@ const PurePreviewMessage = ({
                             <Button
                               data-testid="message-edit-button"
                               variant="ghost"
-                              className="px-2 h-fit rounded-full text-muted-foreground opacity-0 group-hover/message:opacity-100 flex-shrink-0"
+                              className="px-2 h-fit rounded-full text-text-dim opacity-0 group-hover/message:opacity-100 flex-shrink-0"
                               onClick={() => {
                                 setMode("edit");
                               }}
@@ -2431,7 +2431,7 @@ export const ThinkingMessage = () => {
         </div>
 
         <div className="flex flex-col gap-2 w-full min-w-0">
-          <div className="flex flex-col gap-4 text-muted-foreground">
+          <div className="flex flex-col gap-4 text-text-dim">
             Thinking...
           </div>
         </div>

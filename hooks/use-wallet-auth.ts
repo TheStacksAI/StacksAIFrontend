@@ -25,10 +25,8 @@ export function useWalletAuth() {
           setAddress(stxAddress);
         }
       } else {
-        if (address !== null) {
-          setAddress(null);
-          setUser(null);
-        }
+        setAddress(null);
+        setUser(null);
         setIsLoading(false);
       }
     };

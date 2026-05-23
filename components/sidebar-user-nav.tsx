@@ -38,7 +38,7 @@ export function SidebarUserNav({ user }: { user: User }) {
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               data-testid="user-nav-button"
-              className="data-[state=open]:bg-sidebar-accent bg-background data-[state=open]:text-sidebar-accent-foreground h-10"
+              className="data-[state=open]:bg-sidebar-accent bg-app-bg data-[state=open]:text-sidebar-accent-foreground h-10"
             >
               <AvatarFallback
                 src={`https://avatar.vercel.sh/${user.address}`}

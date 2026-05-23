@@ -16,7 +16,6 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
-import Image from "next/image";
 
 export function AppSidebar() {
   const router = useRouter();
@@ -33,16 +32,10 @@ export function AppSidebar() {
               onClick={() => {
                 setOpenMobile(false);
               }}
-              className="flex flex-row gap-1 items-center"
+              className="flex flex-row gap-2 items-center"
             >
-              <Image
-                src="/images/stacks.png"
-                alt="StacksAI"
-                width={30}
-                height={30}
-              />
-              <h1 className="text-lg font-semibold text-theme-orange dark:text-theme-orange">
-                StacksAI
+              <h1 className="font-serif font-bold text-xl tracking-tight text-text-main">
+                Stacks<span className="italic text-accent-indigo">AI</span>
               </h1>
             </Link>
             <Tooltip>
