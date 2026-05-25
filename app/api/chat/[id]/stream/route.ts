@@ -37,7 +37,7 @@ export async function GET(
     ).toResponse();
   }
 
-  let chat: Chat;
+  let chat: Chat | undefined;
   let user;
 
   try {
