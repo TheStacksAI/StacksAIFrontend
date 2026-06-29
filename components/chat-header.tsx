@@ -1,22 +1,33 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useWindowSize } from "usehooks-ts";
 
 import { SidebarToggle } from "@/components/sidebar-toggle";
 import { Button } from "@/components/ui/button";
-import { PlusIcon, VercelIcon } from "./icons";
+import { PlusIcon } from "./icons";
 import { useSidebar } from "./ui/sidebar";
-import { memo } from "react";
+import { memo, useState, useEffect } from "react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { StacksConnectButton } from "@/components/StacksConnectButton";
+import NetworkIndicator from "@/components/NetworkIndicator";
+import ModelSwitcher from "@/components/ModelSwitcher";
+import { DEFAULT_CHAT_MODEL } from "@/lib/ai/models";
 
 function PureChatHeader() {
   const router = useRouter();
   const { open } = useSidebar();
 
   const { width: windowWidth } = useWindowSize();
+
+  const [chatModel, setChatModel] = useState(DEFAULT_CHAT_MODEL);
+
+  useEffect(() => {
+    const cookies = document.cookie.split(';');
+    const modelCookie = cookies.find(c => c.trim().startsWith('chat-model='));
+    if (modelCookie) setChatModel(modelCookie.split('=')[1]);
+  }, []);
+
   return (
     <header className="flex sticky top-0 bg-app-bg/80 backdrop-blur-md border-b border-app-border py-1.5 items-center justify-between px-2 sm:px-4 md:px-2 gap-2 z-10 w-full max-w-full min-w-0">
       <div className="flex items-center gap-2 min-w-0 flex-shrink">
@@ -40,6 +51,9 @@ function PureChatHeader() {
             <TooltipContent>New Chat</TooltipContent>
           </Tooltip>
         )}
+
+        <NetworkIndicator />
+        <ModelSwitcher selected={chatModel} onChange={setChatModel} />
       </div>
       <div className="flex flex-row gap-2 items-center flex-shrink-0">
         <StacksConnectButton />

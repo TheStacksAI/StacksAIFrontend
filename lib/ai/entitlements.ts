@@ -1,29 +1,49 @@
-// import type { UserType } from "@/app/(auth)/auth";
-// import type { ChatModel } from "./models";
+import type { ChatModel } from "./models";
 
-// interface Entitlements {
-//   maxMessagesPerDay: number;
-//   availableChatModelIds: Array<ChatModel["id"]>;
-// }
+export type UserTier = "free" | "pro" | "enterprise";
 
-// export const entitlementsByUserType: Record<UserType, Entitlements> = {
-//   /*
-//    * For users without an account
-//    */
-//   guest: {
-//     maxMessagesPerDay: 100,
-//     availableChatModelIds: ["chat-model", "chat-model-reasoning"],
-//   },
+export interface Entitlements {
+  maxMessagesPerDay: number;
+  maxTransactionsPerDay: number;
+  availableChatModelIds: Array<ChatModel["id"]>;
+  priorityQueue: boolean;
+  advancedAnalytics: boolean;
+  apiAccess: boolean;
+}
 
-//   /*
-//    * For users with an account
-//    */
-//   regular: {
-//     maxMessagesPerDay: 100,
-//     availableChatModelIds: ["chat-model", "chat-model-reasoning"],
-//   },
+export const entitlementsByTier: Record<UserTier, Entitlements> = {
+  free: {
+    maxMessagesPerDay: 50,
+    maxTransactionsPerDay: 10,
+    availableChatModelIds: ["chat-model"],
+    priorityQueue: false,
+    advancedAnalytics: false,
+    apiAccess: false,
+  },
+  pro: {
+    maxMessagesPerDay: 500,
+    maxTransactionsPerDay: 100,
+    availableChatModelIds: ["chat-model", "chat-model-reasoning"],
+    priorityQueue: true,
+    advancedAnalytics: true,
+    apiAccess: false,
+  },
+  enterprise: {
+    maxMessagesPerDay: 10_000,
+    maxTransactionsPerDay: 1_000,
+    availableChatModelIds: ["chat-model", "chat-model-reasoning"],
+    priorityQueue: true,
+    advancedAnalytics: true,
+    apiAccess: true,
+  },
+};
 
-//   /*
-//    * TODO: For users with an account and a paid membership
-//    */
-// };
+export function getUserTier(isConnected: boolean, isWhitelisted?: boolean): UserTier {
+  if (!isConnected) return "free";
+  if (isWhitelisted) return "enterprise";
+  return "pro";
+}
+
+export function getEntitlements(tier: UserTier): Entitlements {
+  return entitlementsByTier[tier];
+}

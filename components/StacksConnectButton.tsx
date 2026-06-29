@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { connect, disconnect, isConnected, getLocalStorage } from '@stacks/connect';
 import { useState, useEffect } from 'react';
 import { Wallet } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
 
 interface StacksConnectButtonProps {
   variant?: 'default' | 'outline' | 'ghost';
@@ -51,17 +52,20 @@ export function StacksConnectButton({
   const handleConnect = async () => {
     try {
       setIsConnecting(true);
+      toast.info('Opening wallet... Please approve the connection in your Stacks wallet.');
+
       const response = await connect();
       const stxAddress = response.addresses[0].address;
 
       setConnected(true);
       setAddress(stxAddress);
+      toast.success(`Connected as ${stxAddress.slice(0, 6)}...${stxAddress.slice(-4)}`);
 
       if (onConnect) {
         onConnect(stxAddress);
       }
     } catch (error) {
-      console.error('Failed to connect wallet:', error);
+      toast.error(error);
     } finally {
       setIsConnecting(false);
     }

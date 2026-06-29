@@ -7,6 +7,7 @@ import { Zap, Loader2, XCircle, AlertCircle } from "lucide-react";
 import { useWalletAuth } from "@/hooks/use-wallet-auth";
 import { useHandleTransaction } from "@/hooks/useHandleTransaction";
 import TransactionReceipt from "./TransactionReceipt";
+import { toast } from "@/hooks/use-toast";
 
 // Transaction type discriminators
 type STXTransferData = {
@@ -157,12 +158,14 @@ export default function TransactionWrapper({
       setTxState("broadcasting");
       setTxId(result.txid);
       setTxState("success");
+      toast.success(`Transaction confirmed: ${result.txid.slice(0, 10)}...${result.txid.slice(-6)}`);
       onSuccess?.(result.txid);
     } catch (err) {
       console.error("Transaction error:", err);
       setTxState("error");
       const errorMsg = err instanceof Error ? err.message : "Transaction failed";
       setError(errorMsg);
+      toast.error(err);
       onError?.(errorMsg);
     }
   };

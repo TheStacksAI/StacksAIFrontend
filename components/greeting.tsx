@@ -1,6 +1,17 @@
 import { motion } from "framer-motion";
+import { useWalletAuth } from "@/hooks/use-wallet-auth";
+import { Wallet, TrendingUp, Zap, RefreshCw } from "lucide-react";
+
+const suggestions = [
+  { icon: <Wallet className="w-3 h-3" />, text: "Check my balance", action: "Show me my STX balance" },
+  { icon: <TrendingUp className="w-3 h-3" />, text: "STX price", action: "What is the current STX price?" },
+  { icon: <RefreshCw className="w-3 h-3" />, text: "Swap tokens", action: "I want to swap STX for ALEX" },
+  { icon: <Zap className="w-3 h-3" />, text: "Stack STX", action: "Explain how stacking works" },
+];
 
 export const Greeting = () => {
+  const { isConnected, address } = useWalletAuth();
+
   return (
     <div
       key="overview"
@@ -24,8 +35,20 @@ export const Greeting = () => {
         transition={{ delay: 0.6 }}
         className="text-base sm:text-lg md:text-xl text-text-dim break-words"
       >
-        Talk to Bitcoin. Trade, lend, stack — through conversation.
+        {isConnected && address
+          ? `Connected as ${address.slice(0, 6)}...${address.slice(-4)} — trade, lend, stack through conversation.`
+          : "Talk to Bitcoin. Trade, lend, stack — through conversation."}
       </motion.div>
+      {!isConnected && (
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          className="text-sm text-text-pale mt-1"
+        >
+          Connect your wallet in the top-right to get started.
+        </motion.p>
+      )}
     </div>
   );
 };

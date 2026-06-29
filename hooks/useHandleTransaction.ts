@@ -1,5 +1,6 @@
 import { request } from "@stacks/connect";
 import { useWalletAuth } from "./use-wallet-auth";
+import { toast } from "./use-toast";
 
 /**
  * Hook for handling Stacks transactions
@@ -8,31 +9,54 @@ import { useWalletAuth } from "./use-wallet-auth";
 export function useHandleTransaction() {
   const { address } = useWalletAuth();
 
+  const withProgress = async <T,>(
+    operation: () => Promise<T>,
+    steps: { building?: string; waiting?: string; broadcasting?: string; success?: string }
+  ): Promise<T> => {
+    const loadingId = toast.loading(steps.building ?? 'Preparing transaction...');
+
+    try {
+      toast.update(loadingId, steps.waiting ?? 'Waiting for wallet...', 'loading');
+      const result = await operation();
+
+      toast.update(loadingId, steps.broadcasting ?? 'Broadcasting...', 'loading');
+      toast.dismiss(loadingId);
+      toast.success(steps.success ?? 'Transaction sent successfully');
+
+      return result;
+    } catch (err) {
+      toast.dismiss(loadingId);
+      toast.error(err);
+      throw err;
+    }
+  };
+
   /**
    * Send STX tokens to another address
    */
   const handleSTXTransfer = async (params: {
     recipient: string;
-    amount: string; // Amount in micro-STX
+    amount: string;
     memo?: string;
   }) => {
     if (!address) {
+      toast.error("Wallet not connected");
       throw new Error("Wallet not connected");
     }
 
-    try {
-      const result = await request('stx_transferStx', {
+    return withProgress(
+      () => request('stx_transferStx', {
         recipient: params.recipient,
         amount: params.amount,
         memo: params.memo
-      });
-
-      console.log("✅ STX transfer sent:", result?.txid!);
-      return result;
-    } catch (err) {
-      console.error("❌ Error sending STX transfer:", err);
-      throw err;
-    }
+      }),
+      {
+        building: 'Building STX transfer...',
+        waiting: 'Waiting for wallet confirmation...',
+        broadcasting: 'Broadcasting transfer to network...',
+        success: `Sent ${params.amount} STX to ${params.recipient.slice(0, 6)}...${params.recipient.slice(-4)}`,
+      }
+    );
   };
 
   /**
@@ -42,24 +66,26 @@ export function useHandleTransaction() {
     contractAddress: string;
     contractName: string;
     functionName: string;
-    functionArgs: any[]; // Clarity values
+    functionArgs: any[];
   }) => {
     if (!address) {
+      toast.error("Wallet not connected");
       throw new Error("Wallet not connected");
     }
 
-    try {
-      const result = await request('stx_callContract', {
+    return withProgress(
+      () => request('stx_callContract', {
         contract: `${params.contractAddress}.${params.contractName}`,
         functionName: params.functionName,
         functionArgs: params.functionArgs
-      });
-      console.log("✅ Contract call sent:", result?.txid!);
-      return result;
-    } catch (err) {
-      console.error("❌ Error calling contract:", err);
-      throw err;
-    }
+      }),
+      {
+        building: `Building ${params.functionName}() call...`,
+        waiting: 'Waiting for wallet confirmation...',
+        broadcasting: 'Broadcasting contract call...',
+        success: `${params.functionName}() executed successfully`,
+      }
+    );
   };
 
   /**
@@ -71,22 +97,23 @@ export function useHandleTransaction() {
     clarityVersion?: number;
   }) => {
     if (!address) {
+      toast.error("Wallet not connected");
       throw new Error("Wallet not connected");
     }
 
-    try {
-      const result = await request('stx_deployContract', {
+    return withProgress(
+      () => request('stx_deployContract', {
         name: params.name,
         clarityCode: params.code,
         clarityVersion: params.clarityVersion || 3
-      });
-
-      console.log("✅ Contract deployed:", result?.txid!);
-      return result;
-    } catch (err) {
-      console.error("❌ Error deploying contract:", err);
-      throw err;
-    }
+      }),
+      {
+        building: 'Compiling contract...',
+        waiting: 'Waiting for wallet confirmation...',
+        broadcasting: 'Deploying to network...',
+        success: `Contract ${params.name} deployed!`,
+      }
+    );
   };
 
   /**
@@ -100,22 +127,23 @@ export function useHandleTransaction() {
     memo?: string;
   }) => {
     if (!address) {
+      toast.error("Wallet not connected");
       throw new Error("Wallet not connected");
     }
 
-    try {
-      const result = await request('stx_transferSip10Ft', {
+    return withProgress(
+      () => request('stx_transferSip10Ft', {
         asset: `${params.contractAddress}.${params.contractName}`,
         recipient: params.recipient,
         amount: params.amount
-      });
-
-      console.log("✅ Token transfer sent:", result?.txid!);
-      return result;
-    } catch (err) {
-      console.error("❌ Error sending token transfer:", err);
-      throw err;
-    }
+      }),
+      {
+        building: 'Building token transfer...',
+        waiting: 'Waiting for wallet confirmation...',
+        broadcasting: 'Broadcasting token transfer...',
+        success: `Transferred ${params.amount} tokens`,
+      }
+    );
   };
 
   return {

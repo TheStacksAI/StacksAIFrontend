@@ -4,7 +4,7 @@ import { isToday, isYesterday, subMonths, subWeeks } from "date-fns";
 import { useParams, useRouter } from "next/navigation";
 // Remove next-auth User type import
 import { useState } from "react";
-import { toast } from "sonner";
+import { toast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
 import {
   AlertDialog,
@@ -151,7 +151,7 @@ export function SidebarHistory({
 
   const handleDelete = async () => {
     if (!user?.address) {
-      toast.error("Wallet not connected");
+      toast.info("Wallet not connected");
       return;
     }
 

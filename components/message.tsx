@@ -22,11 +22,13 @@ import { SuggestionAwareMarkdown } from "@/components/SuggestionAwareMarkdown";
 import { InfoIcon } from "lucide-react";
 
 // Stacks DEX Components (Generic - being phased out)
+// TODO: Replace with lazy-loaded equivalents via @/lib/lazy-components
 import SwapInfo from "@/components/stacks-dex/SwapInfo";
 import PoolList from "@/components/stacks-dex/PoolList";
 import TokenPrices from "@/components/stacks-dex/TokenPrices";
 
 // ALEX Protocol Components
+// TODO: Replace with lazy-loaded equivalents
 import AlexPoolList from "@/components/stacks-dex/alex/AlexPoolList";
 import AlexTokenPrices from "@/components/stacks-dex/alex/AlexTokenPrices";
 import AlexTradingPairs from "@/components/stacks-dex/alex/AlexTradingPairs";
@@ -36,6 +38,7 @@ import AlexPoolStats from "@/components/stacks-dex/alex/AlexPoolStats";
 import AlexTotalTVL from "@/components/stacks-dex/alex/AlexTotalTVL";
 
 // Velar Protocol Components
+// TODO: Replace with lazy-loaded equivalents
 import VelarPoolList from "@/components/stacks-dex/velar/VelarPoolList";
 import VelarTickers from "@/components/stacks-dex/velar/VelarTickers";
 import VelarTokenPrices from "@/components/stacks-dex/velar/VelarTokenPrices";

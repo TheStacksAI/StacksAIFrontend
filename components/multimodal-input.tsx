@@ -13,7 +13,7 @@ import {
   type ChangeEvent,
   memo,
 } from "react";
-import { toast } from "sonner";
+import { toast } from "@/hooks/use-toast";
 import { useLocalStorage, useWindowSize } from "usehooks-ts";
 
 import { ArrowUpIcon, PaperclipIcon, StopIcon } from "./icons";
@@ -21,6 +21,7 @@ import { PreviewAttachment } from "./preview-attachment";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
 import { SuggestedActions } from "./suggested-actions";
+import { SmartCommandSuggestions } from "./SmartCommandSuggestions";
 import equal from "fast-deep-equal";
 import type { UseChatHelpers } from "@ai-sdk/react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -184,7 +185,7 @@ export function MultimodalInput({
 
   function submitForm() {
     if (!isConnected || !address) {
-      toast.error("Please connect your Stacks wallet to send a message");
+      toast.info("Please connect your Stacks wallet to send a message");
       return;
     }
 
@@ -239,7 +240,7 @@ export function MultimodalInput({
       const { error } = await response.json();
       toast.error(error);
     } catch (error) {
-      toast.error("Failed to upload file, please try again!");
+      toast.error(error);
     }
   };
 
@@ -347,40 +348,45 @@ export function MultimodalInput({
           </div>
         )}
 
-        <Textarea
-          data-testid="multimodal-input"
-          ref={textareaRef}
-          placeholder="Ask anything — swap, lend, stack, check balance..."
-          value={input}
-          onChange={handleInput}
-          className={cx(
-            "min-h-[24px] max-h-[calc(75dvh)] overflow-hidden resize-none rounded-2xl !text-base bg-app-bg border border-app-border focus:border-accent-indigo focus:ring-2 focus:ring-accent-indigo/10 pb-10 w-full max-w-full min-w-0 placeholder:text-text-pale text-text-main transition-all duration-200",
-            className
-          )}
-          rows={1}
-          autoFocus
-          onKeyDown={(event) => {
-            if (
-              event.key === "Enter" &&
-              !event.shiftKey &&
-              !event.nativeEvent.isComposing
-            ) {
-              event.preventDefault();
+        <div className="relative">
+          <SmartCommandSuggestions
+            input={input}
+            onSelect={(text) => {
+              setInput(text);
+              textareaRef.current?.focus();
+            }}
+          />
+          <Textarea
+            data-testid="multimodal-input"
+            ref={textareaRef}
+            placeholder="Ask anything — swap, lend, stack, check balance..."
+            value={input}
+            onChange={handleInput}
+            className={cx(
+              "min-h-[24px] max-h-[calc(75dvh)] overflow-hidden resize-none rounded-2xl !text-base bg-app-bg border border-app-border focus:border-accent-indigo focus:ring-2 focus:ring-accent-indigo/10 pb-10 w-full max-w-full min-w-0 placeholder:text-text-pale text-text-main transition-all duration-200",
+              className
+            )}
+            rows={1}
+            autoFocus
+            onKeyDown={(event) => {
+              if (
+                event.key === "Enter" &&
+                !event.shiftKey &&
+                !event.nativeEvent.isComposing
+              ) {
+                event.preventDefault();
 
               if (status !== "ready") {
-                toast.error(
+                toast.info(
                   "Please wait for the model to finish its response!"
                 );
               } else {
-                submitForm();
+                  submitForm();
+                }
               }
-            }
-          }}
-        />
-        {/*
-      <div className="absolute bottom-0 p-2 w-fit flex flex-row justify-start">
-        <AttachmentsButton fileInputRef={fileInputRef} status={status} />
-      </div> */}
+            }}
+          />
+        </div>
 
         <div className="absolute bottom-0 right-0 p-2 w-fit flex flex-row justify-end">
           {status === "submitted" ? (

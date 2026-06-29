@@ -6,7 +6,7 @@ import { memo, useState } from "react";
 import type { UseChatHelpers } from "@ai-sdk/react";
 import type { VisibilityType } from "./visibility-selector";
 import type { ChatMessage } from "@/lib/types";
-import { toast } from "sonner";
+import { toast } from "@/hooks/use-toast";
 import { useWalletAuth } from "@/hooks/use-wallet-auth";
 import {
   Wallet,
@@ -509,7 +509,7 @@ function PureSuggestedActions({
 
   const handleActionClick = async (action: string) => {
     if (!isConnected) {
-      toast.error("Please connect your Stacks wallet to send a message");
+      toast.info("Please connect your Stacks wallet to send a message");
       return;
     }
 

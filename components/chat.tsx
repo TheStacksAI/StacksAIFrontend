@@ -11,7 +11,7 @@ import { Messages } from "./messages";
 import type { VisibilityType } from "./visibility-selector";
 import { unstable_serialize } from "swr/infinite";
 import { getChatHistoryPaginationKey } from "./sidebar-history";
-import { toast } from "./toast";
+import { toast } from "@/hooks/use-toast";
 import { useSearchParams } from "next/navigation";
 import { useChatVisibility } from "@/hooks/use-chat-visibility";
 import { useAutoResume } from "@/hooks/use-auto-resume";
@@ -19,6 +19,7 @@ import { ChatSDKError } from "@/lib/errors";
 import type { Attachment, ChatMessage } from "@/lib/types";
 import { useDataStream } from "./data-stream-provider";
 import { useAutoRegisterUser } from "@/hooks/useAutoRegisterUser";
+import { useAnalytics } from "@/hooks/use-analytics";
 
 export function Chat({
   id,
@@ -101,14 +102,28 @@ export function Chat({
       mutate(unstable_serialize(getChatHistoryPaginationKey));
     },
     onError: (error) => {
+      track('error', {
+        message: error instanceof Error ? error.message : String(error),
+      });
       if (error instanceof ChatSDKError) {
-        toast({
-          type: "error",
-          description: error.message,
-        });
+        toast.error(error.message);
+      } else {
+        toast.error(error);
       }
     },
   });
+
+  const { track } = useAnalytics();
+
+  useEffect(() => {
+    if (address) track('wallet_connect', { address });
+  }, [address, track]);
+
+  useEffect(() => {
+    if (messages.length > 0 && messages[messages.length - 1]?.role === 'user') {
+      track('message_send');
+    }
+  }, [messages, track]);
 
   const searchParams = useSearchParams();
   const query = searchParams.get("query");
